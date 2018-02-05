@@ -1,0 +1,34 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input, label{
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+label{
+	padding: 5px;
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+}
+
+input{
+	padding: 3px;
+	font-family: "Roboto Mono", monospace;
+	font-size: 18px;
+	border: none;
+	border-radius: 3px;
+	width: 100px;
+	background-color: rgb(220, 220, 220);
+}
+
+canvas{
+	background-color: rgba(0, 0, 0, 0);
+	display: block;
+	margin: 10px auto; 
+	margin-top: 40px;
+}
