@@ -125,14 +125,23 @@ function updateTextbox(){
 	let numberOfPoints = numberOfPointsTextbox.value;
 	let multiplier = multiplierTextbox.value;
 
-	if(numberOfPoints > numberOfPointsTextbox.max){
+	console.log(numberOfPoints);
+	console.log(numberOfPointsTextbox.max);
+
+	if(parseInt(numberOfPoints) > parseInt(numberOfPointsTextbox.max)){
 		numberOfPointsTextbox.value = numberOfPointsTextbox.max;
 		numberOfPoints = numberOfPointsTextbox.max;
+	}else if(parseInt(numberOfPoints) < parseInt(numberOfPointsTextbox.min)){
+		numberOfPointsTextbox.value = numberOfPointsTextbox.min;
+		numberOfPoints = numberOfPointsTextbox.min;
 	}
 
-	if(multiplier > multiplierTextbox.max){
+	if(parseInt(multiplier) > parseInt(multiplierTextbox.max)){
 		multiplierTextbox.value = multiplierTextbox.max;
 		multiplier = multiplierTextbox.max;
+	}else if(parseInt(multiplier) < parseInt(multiplierTextbox.min)){
+		multiplierTextbox.value = multiplierTextbox.min;
+		multiplier = multiplierTextbox.min;
 	}
 
 	numberOfPointsSlider.value = numberOfPoints;
