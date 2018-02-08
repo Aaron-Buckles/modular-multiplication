@@ -2,14 +2,18 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 
 let numberOfPointsTextbox = document.getElementById("numberOfPoints");
+let numberOfPointsSlider = document.getElementById("numberOfPointsSlider");
 let multiplierTextbox = document.getElementById("multiplier");
+let multiplierSlider = document.getElementById("multiplierSlider");
 
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 let maxSize = canvas.width;
 let minSize = 250;
 
-window.addEventListener("resize", update);
+window.addEventListener("resize", function(){
+	update(numberOfPointsTextbox.value, multiplierTextbox.value);
+});
 
 
 function resizeCanvas(resize=false) {
@@ -117,12 +121,41 @@ function drawLines(pointCoords, multiplier, numberOfPoints){
 }
 
 
-function update() {
-	resizeCanvas(true);
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+function updateTextbox(){
 	let numberOfPoints = numberOfPointsTextbox.value;
 	let multiplier = multiplierTextbox.value;
+
+	if(numberOfPoints > numberOfPointsTextbox.max){
+		numberOfPointsTextbox.value = numberOfPointsTextbox.max;
+		numberOfPoints = numberOfPointsTextbox.max;
+	}
+
+	if(multiplier > multiplierTextbox.max){
+		multiplierTextbox.value = multiplierTextbox.max;
+		multiplier = multiplierTextbox.max;
+	}
+
+	numberOfPointsSlider.value = numberOfPoints;
+	multiplierSlider.value = multiplier;
+
+	update(numberOfPoints, multiplier);
+}
+
+
+function updateSlider(){
+	let numberOfPoints = numberOfPointsSlider.value;
+	let multiplier = multiplierSlider.value;
+
+	numberOfPointsTextbox.value = numberOfPoints;
+	multiplierTextbox.value = multiplier;
+
+	update(numberOfPoints, multiplier);
+}
+
+
+function update(numberOfPoints, multiplier) {
+	resizeCanvas();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	let pointCoords = calcPointCoords(calcPoints(numberOfPoints));
 
@@ -131,4 +164,5 @@ function update() {
 }
 
 
-update();
+resizeCanvas(true);
+update(10, 4);
