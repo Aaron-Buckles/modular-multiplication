@@ -1,6 +1,5 @@
 body{
 	background-color: #2F4F75;
-	color: white;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -23,12 +22,14 @@ label{
 	padding: 5px;
 	font-family: "Roboto", sans-serif;
 	font-size: 16px;
+	color: white;
 }
 
 input{
 	padding: 3px;
 	font-family: "Roboto Mono", monospace;
 	font-size: 18px;
+	color: white;
 	border: none;
 	border-radius: 3px;
 	width: 150px;
@@ -46,6 +47,7 @@ h1{
 	color: #A63A50;
 	font-family: "Roboto", monospace;
 	font-size: 3.5em;
+	text-align: center;
 }
 
 .slider{

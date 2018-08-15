@@ -1,5 +1,6 @@
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
+ctx.scale(2,2);
 
 let numberOfPointsTextbox = document.getElementById("numberOfPoints");
 let numberOfPointsSlider = document.getElementById("numberOfPointsSlider");
