@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modular Multiplication</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="https://aaronbuckles.com/favicon.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,400i" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://aaronbuckles.com/css/main.css">
+	<link rel="stylesheet" type="text/css" href="resources/modMultStyle.css">
+</head>
+<body>
+	<div class="navbar">
+		<a href="https://www.aaronbuckles.com">Home</a>
+		<a href="https://www.aaronbuckles.com#my-info">My Info</a>
+		<a href="https://www.aaronbuckles.com/projects.html">Projects</a>
+	</div>
+
+	<h1 id="title-under-navbar" class="title">Modular Multiplication</h1>
+
+	<div style="text-align: center;">
+		<div style="display: inline-block; margin: 0 auto;">
+			<div style="float: left; margin-right: 20px; width: 150px;">
+				<label for="numberOfPoints">Points</label>
+				<input id="numberOfPoints" type="number" min="1" max="200" value="10" onchange="updateTextbox();">
+				<input id="numberOfPointsSlider" type="range" min="1" max="200" value="10" class="slider" oninput="updateSlider();">
+			</div>
+			<div style="float: left; width: 150px;">
+				<label for="multiplier">Multiplier</label>
+				<input id="multiplier" type="number" min="1" max="700" value="4" onchange="updateTextbox();">
+				<input id="multiplierSlider" type="range" min="1" max="400" value="4" class="slider" oninput="updateSlider();">
+			</div>
+		</div>
+	</div>
+
+
+	<canvas id="myCanvas" width="600" height="600"></canvas>
+
+	<script type="text/javascript" src="resources/modMult.js"></script>
+</body>
+</html>
