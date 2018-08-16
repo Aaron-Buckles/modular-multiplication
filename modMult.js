@@ -1,6 +1,9 @@
+let mainColor = "#DCDCDC";
+let mainWidth = 2.5;
+
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-ctx.scale(2,2);
+ctx.imageSmoothingEnabled = true;
 
 let numberOfPointsTextbox = document.getElementById("numberOfPoints");
 let numberOfPointsSlider = document.getElementById("numberOfPointsSlider");
@@ -10,7 +13,7 @@ let multiplierSlider = document.getElementById("multiplierSlider");
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 let maxSize = canvas.width;
-let minSize = 250;
+let minSize = 0;
 
 window.addEventListener("resize", function(){
 	update(numberOfPointsTextbox.value, multiplierTextbox.value);
@@ -25,7 +28,7 @@ function resizeCanvas(resize=false) {
 		// clamp the canvas size between the min and max sizes
 		var fitWidth = Math.max(Math.min(Math.floor(window.innerWidth / 2), maxSize), minSize);
 		var fitHeight = Math.max(Math.min(Math.floor(window.innerHeight / 2), maxSize), minSize);
-		var canvasSize = Math.min(fitWidth, fitHeight);
+		var canvasSize = Math.max(fitWidth, fitHeight);
 
 		canvas.width = canvasSize;
 		canvas.height = canvasSize;
@@ -66,18 +69,20 @@ function calcPoints(numberOfPoints){
 }
 
 
-function drawDot(x, y, r, color){
+function drawDot(x, y, r, color="black"){
 	ctx.beginPath();
-	ctx.arc(x, y, r, 0, (Math.PI * 2), false);
+	ctx.arc(x, y, r, 0, (Math.PI * 2));
 	ctx.fillStyle = color;
 	ctx.fill();
 }
 
 
-function drawLine(x1, y1, x2, y2, color="black"){
+function drawLine(x1, y1, x2, y2, color="black", thiccness=1){
+	ctx.beginPath();
 	ctx.moveTo(x1, y1);
 	ctx.lineTo(x2, y2);
 	ctx.strokeStyle = color
+	ctx.lineWidth = thiccness;
 	ctx.stroke();
 }
 
@@ -87,7 +92,6 @@ function calcPointCoords(points){
 
 	for(let i = 0; i < points.length; i++){
 		let halfCanvas = canvas.width / 2;
-		let padding = 10;
 		let pointX = points[i][0];
 		let pointY = points[i][1];
 
@@ -103,7 +107,7 @@ function calcPointCoords(points){
 
 function drawPoints(pointCoords){
 	for(let i = 0; i < pointCoords.length; i++){
-		drawDot(pointCoords[i][0], pointCoords[i][1], 2, "white");
+		drawDot(pointCoords[i][0], pointCoords[i][1], 2, "red");
 	}
 }
 
@@ -117,8 +121,17 @@ function drawLines(pointCoords, multiplier, numberOfPoints){
 		let x2 = pointCoords[otherPoint][0];
 		let y2 = pointCoords[otherPoint][1];
 
-		drawLine(x1, y1, x2, y2, "white");
+		drawLine(x1, y1, x2, y2, color=mainColor, thiccness=mainWidth);
 	}
+}
+
+
+function drawCircleOutline(){
+	ctx.beginPath();
+	ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, (Math.PI * 2));
+	ctx.strokeStyle = mainColor;
+	ctx.lineWidth = mainWidth;
+	ctx.stroke();
 }
 
 
@@ -169,10 +182,11 @@ function update(numberOfPoints, multiplier) {
 
 	let pointCoords = calcPointCoords(calcPoints(numberOfPoints));
 
-	drawPoints(pointCoords);
+	//drawPoints(pointCoords);
 	drawLines(pointCoords, multiplier, numberOfPoints);
+	drawCircleOutline();
 }
 
 
 resizeCanvas(true);
-update(10, 4);
+update(162, 218);
